@@ -1,3 +1,16 @@
+SAMPLE OUTPUT
+-------------
+
+(b:release-0.2.x d:deploy-pro-2012-03-29) [thomas@otto platform]$ ls
+Makefile  platform  puppet  RELEASE-0.2.1
+(b:release-0.2.x d:deploy-pro-2012-03-29) [thomas@otto platform]$ cd puppet/pro/
+(s:puppet/pro b:release-0.2.x d:v0.2.1) [thomas@otto pro]$
+
+In the first prompt, I'm in the root module, on the release-0.2.x branch,
+at a commit described by tag deploy-pro-2012-03-29.
+In the last prompt, I went into a submodule, so I'm now in
+submodule puppet/pro, on branch release-0.2.x, described by tag v0.2.1
+
 INSTALL
 -------
 
