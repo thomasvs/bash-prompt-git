@@ -1,0 +1,19 @@
+INSTALL
+-------
+
+- run 'make install' as a user to put bash scripts in place
+- make sure you source the script in your .bashrc or .bash_profile
+  source $HOME/.bashrc.d/git
+
+  (I have these lines in .bashrc to do so:
+
+if test -e ~/.bashrc.d
+then
+  for f in ~/.bashrc.d/*
+  do
+    source $f
+  done
+fi
+
+- set the prompt in your .bashrc or .bash_profile with
+  PS1="\$(parse_git_branch)$PS1"
