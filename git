@@ -21,13 +21,28 @@ function is_submodule() {
 }
 
 function parse_git_branch {
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    git show > /dev/null 2>&1 || return
+    P=
+
+    SM=
     submodule=$(is_submodule)
     if [[ $? -eq 0 ]]; then
-        SM="s:$submodule "
+        SM="s:$submodule"
     fi
-    DESC=" d:"$(git describe 2> /dev/null) || DESC=""
-    echo "("${SM}"b:"${ref#refs/heads/}${DESC}") "
+    P=$P${SM:+${P:+ }${SM}}
+
+    BRANCH=
+    ref=$(git symbolic-ref HEAD 2> /dev/null)
+    if [[ $? -eq 0 ]]; then
+      BRANCH="b:${ref#refs/heads/}"
+    fi
+    P=$P${BRANCH:+${P:+ }${BRANCH}}
+
+
+    DESC="d:"$(git describe 2> /dev/null) || DESC=""
+    P=$P${DESC:+${P:+ }${DESC}}
+
+    echo "(${P}) "
 }
 
 # add to prompt by adding to .bashrc somewhere:
